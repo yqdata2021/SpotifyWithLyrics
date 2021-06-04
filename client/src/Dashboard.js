@@ -37,6 +37,7 @@ function Dashboard({ code }) {
       });
   }, [playingTrack]);
 
+  //
   useEffect(() => {
     if (!accessToken) return;
     spotifyApi.setAccessToken(accessToken);

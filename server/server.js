@@ -20,10 +20,13 @@ app.post("/refresh", (req, res) => {
   spotifyApi
     .refreshAccessToken()
     .then((data) => {
+      
       res.json({
-        accessToken: data.body.accessToken,
-        expiresIn: data.body.expiresIn,
+        accessToken: data.body.access_token,
+        expiresIn: data.body.expires_in,
       });
+      
+      
     })
     .catch((err) => {
       console.log(err);
@@ -42,6 +45,7 @@ app.post("/login", (req, res) => {
   spotifyApi
     .authorizationCodeGrant(code)
     .then((data) => {
+      
       res.json({
         accessToken: data.body.access_token,
         refreshToken: data.body.refresh_token,
@@ -54,7 +58,7 @@ app.post("/login", (req, res) => {
 });
 
 app.get("/lyrics", async (req, res) => {
-  console.log(req.query);
+  
   const lyrics =
     (await lyricsFinder(req.query.artist, req.query.track)) ||
     "no lyrics found";
